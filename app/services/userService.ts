@@ -87,6 +87,7 @@ export class UserService {
         that.storage.set(APP_CONFIG.LOCAL_TOKEN_KEY, JSON.stringify(user)).then(function() {
             that.storage.set(APP_CONFIG.HAS_LOGGED_IN, true).then(function() {
                 console.log('In storeUserCredentials storage [' + APP_CONFIG.LOCAL_TOKEN_KEY + '-' + user + ']');
+                that.user = user;
                 if (storeUserCredentialsCB) storeUserCredentialsCB(user);
             });
         });
@@ -100,12 +101,13 @@ export class UserService {
 
     registerDeviceOnServer() {
         var that = this;
-        var platform = '', params = {};
+        var params = {};
         that.storage.get(APP_CONFIG.DEVICE_TOKEN_KEY).then(function(deviceId) {
+            if (!deviceId) return;
+
             params = {
-                'register_token': deviceId,
-                'userId': that.user._id,
-                'platform': platform || 'google'
+                'deviceToken': deviceId,
+                'userId': that.user._id
             };
 
             console.log('In registerDeviceOnServer request obj ');

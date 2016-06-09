@@ -1,5 +1,6 @@
 export var APP_CONFIG = {
-  baseUrl: 'http://localhost:8080',
+    //baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://extcafe.herokuapp.com',
     LOCAL_TOKEN_KEY: 'extcafe_token_key',
     HAS_LOGGED_IN: 'hasLoggedIn',
     DEVICE_TOKEN_KEY: 'devID',

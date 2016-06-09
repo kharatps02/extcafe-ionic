@@ -33,7 +33,7 @@ export class LoginPage {
                 that.userService.storeUserCredentials(data.user, function() {
                     that.events.publish('user:login');
                     // register device for notification
-                    //that.userService.registerDeviceOnServer();
+                    that.userService.registerDeviceOnServer();
                 });
             } else {
                 Alert.create({

@@ -60,6 +60,7 @@ export class MyApp {
         // decide which menu items should be hidden by current login status stored in local storage
         userService.hasLoggedIn().then((hasLoggedIn) => {
             this.enableMenu(hasLoggedIn == 'true');
+            this.nav.setRoot(CafeHome);
         });
         this.listenToLoginEvents();
     }
@@ -71,7 +72,7 @@ export class MyApp {
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
             Splashscreen.hide();
-            //that.inItPush();
+            that.inItPush();
         });
     }
 
@@ -95,6 +96,7 @@ export class MyApp {
             setTimeout(() => {
                 // logout api call
                 this.userService.logout();
+
             }, 1000);
         }
     }
@@ -161,8 +163,8 @@ export class MyApp {
         });
 
         push.on('error', function(e) {
-          console.log('Error in registration');
-          console.log(e.message);
+            console.log('Error in registration');
+            console.log(e.message);
             // e.message
             Alert.create({
                 title: 'Notification',
